@@ -18,16 +18,7 @@ const App = () => {
   };
 
 
-  const photos = new Array(3).fill({
-    id: "1",
-    location: {
-      city: "Montreal",
-      country: "Canada",
-    },
-    imageSource: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
-    username: "Joe Example",
-    profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-  });
+  const photos = new Array(3).fill(null);
 
 
   
@@ -36,11 +27,12 @@ const App = () => {
     <div className="App">
      
      {photos.map((photo, index) => (
-        <PhotoListItem
-          key={index}
-          sampleDataForPhotoListItem={{ ...photo, id: String(index + 1) }} // Give each photo a unique id
-        />
-      ))}
+  <PhotoListItem
+    key={index}
+    sampleDataForPhotoListItem={sampleDataForPhotoListItem}
+    
+  />
+))}
     </div>
     
   );
