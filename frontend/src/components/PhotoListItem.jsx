@@ -11,12 +11,12 @@ const PhotoListItem = (props) => {
     <div className="photo-list__item">
       
       <PhotoFavButton/>
-      <img className="photo-list__image" src={props.sampleDataForPhotoListItem.imageSource} alt="Description of image" />
+      <img className="photo-list__image" src={props.sampleDataForPhotoListItem.urls.regular} alt="Description of image" />
       
       
       
       <section className="photo-list__user-details">
-      <img src={props.sampleDataForPhotoListItem.profile} alt="Description of image" className="photo-list__user-profile" />
+      <img src={props.sampleDataForPhotoListItem.user.profile} alt="Description of image" className="photo-list__user-profile" />
       <div className="photo-list__user-info ">
 
       <p >{props.sampleDataForPhotoListItem.username}</p> 

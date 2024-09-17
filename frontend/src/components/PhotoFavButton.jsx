@@ -11,7 +11,7 @@ function PhotoFavButton() {
     const [showAlert, setShowAlert] = useState(true); // Example for displaying the alert
   
     const handleClick = () => {
-      setIsSelected(!isSelected); // Toggle the selection state
+      setIsSelected(prevIsSelected => !prevIsSelected) // Toggle the selection state
       setShowAlert(false); // Dismiss the alert once clicked (optional behavior)
     };
 
