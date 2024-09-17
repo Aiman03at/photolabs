@@ -1,8 +1,10 @@
 import React from 'react';
 import TopicList from 'components/TopicList';
+import TopicListItem from 'components/TopicListItem';
 //import PhotoListItem from './components/PhotoListItem';
 import PhotoList from 'components/PhotoList';
 import './App.scss';
+import PhotoListItem from 'components/PhotoListItem';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
@@ -10,7 +12,7 @@ const App = () => {
   
 
 
-  const photos = new Array(3).fill(null);
+  
 
 
   
@@ -25,7 +27,9 @@ const App = () => {
     
   />
 ))}*/}
+<TopicList/>
 <PhotoList/>
+
     </div>
     
   );
