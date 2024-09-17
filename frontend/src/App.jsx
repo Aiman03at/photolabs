@@ -1,6 +1,7 @@
 import React from 'react';
 import TopicList from 'components/TopicList';
 import TopicListItem from 'components/TopicListItem';
+import TopNavigation from 'components/TopNavigationBar';
 //import PhotoListItem from './components/PhotoListItem';
 import PhotoList from 'components/PhotoList';
 import './App.scss';
@@ -27,7 +28,8 @@ const App = () => {
     
   />
 ))}*/}
-<TopicList/>
+<TopNavigation/>
+
 <PhotoList/>
 
     </div>
