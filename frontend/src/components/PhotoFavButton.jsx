@@ -8,17 +8,13 @@ function PhotoFavButton(props) {
 
   
     
-    const handleClick = () => {
-      setIsSelected(prevIsSelected => !prevIsSelected) // Toggle the selection state
-      setShowAlert(false); // Dismiss the alert once clicked (optional behavior)
-    };
 
   
   
   return (
     <div className="photo-list__fav-icon">
       <div className="photo-list__fav-icon-svg" onClick={props.onClick} >
-      <FavIcon selected={props.isFavorited}  />
+      <FavIcon selected={props.isSelected} displayAlert={!props.isSelected} />
       </div>
     </div>
   );
