@@ -10,7 +10,7 @@ const PhotoListItem = (props) => {
   const isFavorited = props.favoritePhotos.some((favPhoto) => favPhoto.id === props.sampleDataForPhotoListItem.id);
 
   return (
-    <div className="photo-list__item">
+    <div className="photo-list__item"  onClick={() => props.openModal(props.sampleDataForPhotoListItem)}>
       <PhotoFavButton 
         isSelected={isFavorited}
         onClick={() => props.toggleFavorite(props.sampleDataForPhotoListItem)}

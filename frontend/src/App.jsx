@@ -5,6 +5,8 @@ import './App.scss';
 
 import HomeRoute from 'routes/HomeRoute';
 
+
+
 // Note: Rendering a single component to build components in isolation
 const App = () => {
 
@@ -36,6 +38,7 @@ const App = () => {
     favoritePhotos={favoritePhotos}
     toggleFavorite={toggleFavorite}
     />
+    
     </div>
     
   );

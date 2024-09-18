@@ -17,6 +17,7 @@ const PhotoList = (props) => {
           sampleDataForPhotoListItem = {photo}  
           favoritePhotos={props.favoritePhotos}
           toggleFavorite={props.toggleFavorite}
+          openModal={props.openModal}
           
         />
       ))}
