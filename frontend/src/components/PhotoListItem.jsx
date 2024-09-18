@@ -6,11 +6,16 @@ import "../styles/PhotoListItem.scss";
 
 
 const PhotoListItem = (props) => {
+
+  const isFavorited = props.favoritePhotos.some((favPhoto) => favPhoto.id === photo.id);
+
   return (
     
     <div className="photo-list__item">
       
-      <PhotoFavButton/>
+      <PhotoFavButton isFavorited={isFavorited}
+        onClick={() => props.toggleFavorite(photo)}/>
+
       <img className="photo-list__image" src={props.sampleDataForPhotoListItem.urls.regular} alt="Description of image" />
       
       
