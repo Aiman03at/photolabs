@@ -2,11 +2,13 @@ import React from 'react';
 import PhotoList from 'components/PhotoList';
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
+import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = (props) => {
-  console.log(`Props${props}`)
+  const isFavorited = props.favoritePhotos.some((favPhoto) => favPhoto.id === props.photo.id);
   return (
     <div className="photo-details-modal">
+     
       <div>
       <button className="photo-details-modal__close-button" onClick={props.closeModal}>
         <img src={closeSymbol} alt="close symbol" />
@@ -14,31 +16,42 @@ const PhotoDetailsModal = (props) => {
       </div>
       
       
+      <PhotoFavButton 
+      className = "photo_modal_fav"
+        isSelected={isFavorited}
+        onClick={() => props.toggleFavorite(props.photo)}
+      />
+      <img src={props.photo.urls.regular} alt="Photo detail" className='photo-details-modal__image' />
+      
+      
         
-        <img src={props.photo.urls.regular} alt="Photo detail" className='photo-details-modal__image' />
+        
         
 
-        <div className='photo-details-modal__header'>
+        
+      <div className='photo-details-modal__header'>
+      
           <img src={props.photo.user.profile} alt="Photo detail"  className='photo-details-modal__photographer-profile'/>
           
           
-           <p>{props.photo.username}</p>
+           <h4 className='photo-details-modal__photographer-details'>{props.photo.user.username}</h4>
           
            
 
            
-            <p>{props.photo.location.city}</p>,<p>{props.photo.location.country}</p>
-           
+            <p className='photo-details-modal__photographer-location'>{props.photo.location.city},{props.photo.location.country}</p>
+            <br></br>
 
+<h2>Similar Photos</h2>
+           
         </div>
 
-        <h4>Similar Photos</h4>
 
         <div className='photo-details-modal__images'>
-        <PhotoList photos={props.photos} 
-      favoritePhotos={props.favoritePhotos}
-      toggleFavorite={props.toggleFavorite}
-      />
+        <PhotoList photos={props.photos}
+        favoritePhotos={props.favoritePhotos}
+        toggleFavorite={props.toggleFavorite}
+        openModal={props.openModal}/>
         </div>
       </div>
       

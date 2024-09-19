@@ -42,9 +42,11 @@ const HomeRoute = (props) => {
         {isModalOpen && (
         <PhotoDetailsModal 
           photo={selectedPhoto} 
+          photos={props.photos} 
           favoritePhotos={props.favoritePhotos}
           toggleFavorite={props.toggleFavorite}
           closeModal={closeModal} 
+          openModal={openModal}
           
         />
       )}  

@@ -12,7 +12,7 @@ const App = () => {
 
 
   const [favoritePhotos, setFavoritePhotos] = useState([]);
-  console.log(`Fav Photos--${favoritePhotos}`);
+  
   // Function to add/remove a photo from favorites
   const toggleFavorite = (photo) => {
     setFavoritePhotos((prevFavorites) => {
@@ -24,10 +24,10 @@ const App = () => {
         return [...prevFavorites, photo];
       }
     });
-    console.log(`Fav Photos--${favoritePhotos}`);
+    
   };
   
-  console.log(`Fav Photos--${favoritePhotos}`);
+  
 
   return (
     <div className="App">
