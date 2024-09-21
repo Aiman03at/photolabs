@@ -10,48 +10,34 @@ import PhotoDetailsModal from './PhotoDetailsModal';
 
 
 const HomeRoute = (props) => {
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-
-  const openModal = (photo) => {
-    setSelectedPhoto(photo);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedPhoto(null);
-  };
+  const { selectPhoto, closeModal } = props; // Add these from props
 
   const isFavPhotoExist = props.favoritePhotos.length > 0;
+  console.log('HomeRoute photos prop:', props.photos);
+  
   return (
     <div className="home-route">
-
-      <TopNavigation topics={props.topics}  
-      isFavPhotoExist={isFavPhotoExist} 
-      openModal={openModal}/>
-
-
-      <PhotoList photos={props.photos} 
-      favoritePhotos={props.favoritePhotos}
-      toggleFavorite={props.toggleFavorite}
-      openModal={openModal} />
-
-
-        {isModalOpen && (
+      
+      <TopNavigation 
+        topics={props.topics}  
+        isFavPhotoExist={isFavPhotoExist} 
+        openModal={selectPhoto} // Call selectPhoto to open modal
+      />
+      <PhotoList 
+       photos={props.photos || []} 
+        favoritePhotos={props.favoritePhotos}
+        toggleFavorite={props.toggleFavorite}
+        openModal={selectPhoto} // Same here
+      />
+      {props.isModalOpen && (
         <PhotoDetailsModal 
-          photo={selectedPhoto} 
+          photo={props.selectedPhoto} 
           photos={props.photos} 
           favoritePhotos={props.favoritePhotos}
           toggleFavorite={props.toggleFavorite}
           closeModal={closeModal} 
-          openModal={openModal}
-          
         />
-      )}  
-
-
+      )}
     </div>
   );
 };

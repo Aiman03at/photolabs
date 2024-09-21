@@ -7,6 +7,9 @@ import "../styles/PhotoList.scss";
   
 
 const PhotoList = (props) => {
+  if (!Array.isArray(props.photos)) {
+    return <div>No photos available</div>;  // Handle the case where photos is not an array
+  }
   
   return (
     <ul className="photo-list">
