@@ -5,7 +5,9 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = (props) => {
+
   const isFavorited = props.favoritePhotos.some((favPhoto) => favPhoto.id === props.photo.id);
+
   return (
     <div className="photo-details-modal">
      
@@ -16,12 +18,7 @@ const PhotoDetailsModal = (props) => {
       </div>
       
       
-      <PhotoFavButton 
-      className = "photo_modal_fav"
-        isSelected={isFavorited}
-        onClick={() => props.toggleFavorite(props.photo)}
-      />
-      <img src={props.photo.urls.regular} alt="Photo detail" className='photo-details-modal__image' />
+      
       
       
         
@@ -30,11 +27,18 @@ const PhotoDetailsModal = (props) => {
 
         
       <div className='photo-details-modal__header'>
+
+      <PhotoFavButton 
+      className = "photo_modal_fav"
+        isSelected={isFavorited}
+        onClick={() => props.toggleFavorite(props.photo)}
+      />
+      <img src={props.photo.urls.regular} alt="Photo detail" className='photo-details-modal__image' />
       
           <img src={props.photo.user.profile} alt="Photo detail"  className='photo-details-modal__photographer-profile'/>
           
           
-           <h4 className='photo-details-modal__photographer-details'>{props.photo.user.username}</h4>
+           <h2 className='photo-details-modal__photographer-details'>{props.photo.user.username}</h2>
           
            
 

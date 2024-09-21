@@ -2,7 +2,7 @@ import React ,{useState} from 'react';
 import photos from 'mocks/photos';
 import topics from 'mocks/topics';
 import './App.scss';
-
+import useApplicationData from 'hooks/useApplicationData';
 import HomeRoute from 'routes/HomeRoute';
 
 
@@ -11,21 +11,16 @@ import HomeRoute from 'routes/HomeRoute';
 const App = () => {
 
 
-  const [favoritePhotos, setFavoritePhotos] = useState([]);
-  
-  // Function to add/remove a photo from favorites
-  const toggleFavorite = (photo) => {
-    setFavoritePhotos((prevFavorites) => {
-      if (prevFavorites.some((favPhoto) => favPhoto.id === photo.id)) {
-        // Remove if already favorited
-        return prevFavorites.filter((favPhoto) => favPhoto.id !== photo.id);
-      } else {
-        // Add to favorites
-        return [...prevFavorites, photo];
-      }
-    });
+  const {
+    state,
+    onPhotoSelect,
+    updateToFavPhotoIds,
+    onLoadTopic,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
+
     
-  };
+  
   
   
 
