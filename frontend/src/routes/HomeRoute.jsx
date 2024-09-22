@@ -10,10 +10,10 @@ import PhotoDetailsModal from './PhotoDetailsModal';
 
 
 const HomeRoute = (props) => {
-  const { selectPhoto, closeModal } = props; // Add these from props
+  const { selectPhoto, closeModal,fetchPhotosByTopic } = props; // Add these from props
 
   const isFavPhotoExist = props.favoritePhotos.length > 0;
-  console.log('HomeRoute photos prop:', props.photos);
+  
   
   return (
     <div className="home-route">
@@ -22,16 +22,17 @@ const HomeRoute = (props) => {
         topics={props.topics}  
         isFavPhotoExist={isFavPhotoExist} 
         openModal={selectPhoto} // Call selectPhoto to open modal
+        fetchPhotosByTopic={fetchPhotosByTopic}
       />
       <PhotoList 
-       photos={props.photos || []} 
+       photos={props.photos} 
         favoritePhotos={props.favoritePhotos}
         toggleFavorite={props.toggleFavorite}
-        openModal={selectPhoto} // Same here
+        openModal={props.selectPhoto} // Same here
       />
       {props.isModalOpen && (
         <PhotoDetailsModal 
-          photo={props.selectedPhoto} 
+          photo={props.selectPhoto} 
           photos={props.photos} 
           favoritePhotos={props.favoritePhotos}
           toggleFavorite={props.toggleFavorite}

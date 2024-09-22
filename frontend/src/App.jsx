@@ -1,15 +1,10 @@
-import React, {useEffect} from 'react';
-
+import React, { useEffect } from 'react';
 import './App.scss';
 import useApplicationData from 'hooks/useApplicationData';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
-
-// Note: Rendering a single component to build components in isolation
 const App = () => {
-
-  
   const {
     state,
     addFavPhoto,
@@ -19,39 +14,31 @@ const App = () => {
     selectPhoto,
     displayPhotoDetails,
     closeModal,
+    fetchPhotosByTopic
   } = useApplicationData();
 
 
+  const toggleFavorite = (photo) => {
+    if (state.favoritePhotoIds.includes(photo.id)) {
+      removeFavPhoto(photo.id);  // Assuming you have this action
+    } else {
+      addFavPhoto(photo.id);  // Assuming you have this action
+    }
+  };
+
+  // Fetch photos
   useEffect(() => {
     fetch("/api/photos")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log('Fetched data:', data); // Log the fetched data
-      setPhotoData(data);
-    })
-    .catch((error) => console.error('Error fetching photos:', error));
-}, [setPhotoData]);
+      .then((response) => response.json())
+      .then((data) => setPhotoData(data));
+  }, []);
 
-// Fetch topics
-useEffect(() => {
-  fetch("/api/topics") // Adjust the endpoint as necessary
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log('Fetched topics:', data);
-      setTopicData(data); // Call the setter for topics
-    })
-    .catch((error) => console.error('Error fetching topics:', error));
-}, [setTopicData]);
+  // Fetch topics
+  useEffect(() => {
+    fetch("/api/topics")
+      .then((response) => response.json())
+      .then((data) => setTopicData(data));
+  }, []);
 
   return (
     <div className="App">
@@ -59,14 +46,21 @@ useEffect(() => {
         photos={state.photoData}
         topics={state.topicData}
         favoritePhotos={state.favoritePhotoIds}
-        onAddFavorite={addFavPhoto}
-        onRemoveFavorite={removeFavPhoto}
-        onSelectPhoto={selectPhoto}
+        toggleFavorite={(id) => 
+          state.favoritePhotoIds.includes(id) 
+            ? removeFavPhoto(id) 
+            : addFavPhoto(id)}
+        selectPhoto={selectPhoto}
+        isModalOpen={state.isModalOpen}
+        fetchPhotosByTopic={fetchPhotosByTopic}
       />
       {state.isModalOpen && (
         <PhotoDetailsModal
-          photo={state.selectedPhoto}
-          onClose={closeModal}
+        photo={state.selectedPhoto}
+        favoritePhotos={state.favoritePhotoIds}  
+        toggleFavorite ={toggleFavorite}// Ensure this is passed correctly
+        closeModal={closeModal}
+        photos = {state.photoData}
         />
       )}
     </div>

@@ -1,6 +1,5 @@
-import photos from 'mocks/photos';
-import { useReducer } from 'react';
 
+import { useReducer} from 'react';
 
 // Action types
 export const ACTIONS = {
@@ -30,34 +29,27 @@ function reducer(state, action) {
         ...state,
         photoData: action.payload,
       };
-
     case ACTIONS.FAV_PHOTO_ADDED:
       return {
         ...state,
         favoritePhotoIds: [...state.favoritePhotoIds, action.payload],
       };
-
     case ACTIONS.FAV_PHOTO_REMOVED:
       return {
         ...state,
         favoritePhotoIds: state.favoritePhotoIds.filter((id) => id !== action.payload),
       };
-
-    
-
     case ACTIONS.SET_TOPIC_DATA:
       return {
         ...state,
         topicData: action.payload,
       };
-
     case ACTIONS.SELECT_PHOTO:
       return {
         ...state,
         selectedPhoto: action.payload,
         isModalOpen: true,
       };
-
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       return {
         ...state,
@@ -65,14 +57,12 @@ function reducer(state, action) {
         similarPhotos: action.payload.similarPhotos,
         isModalOpen: true,
       };
-
     case ACTIONS.CLOSE_MODAL:
       return {
         ...state,
         selectedPhoto: null,
         isModalOpen: false,
       };
-
     default:
       throw new Error(`Unsupported action type: ${action.type}`);
   }
@@ -120,6 +110,19 @@ export default function useApplicationData() {
     dispatch({ type: ACTIONS.CLOSE_MODAL });
   };
 
+  // Fetch photos by topic
+  const fetchPhotosByTopic = (topicId) => {
+    fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
+      .then((response) => {
+        
+        return response.json();
+      })
+      .then((data) => {
+        setPhotoData(data); // Update photo data with fetched images
+      })
+      
+  };
+
   // Return state and actions
   return {
     state,
@@ -130,6 +133,6 @@ export default function useApplicationData() {
     selectPhoto,
     displayPhotoDetails,
     closeModal,
+    fetchPhotosByTopic, // Include the new fetch function
   };
 }
-

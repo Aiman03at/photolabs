@@ -13,13 +13,14 @@ const PhotoListItem = (props) => {
     <div className="photo-list__item"  >
       <PhotoFavButton 
         isSelected={isFavorited}
+
         onClick={() => props.toggleFavorite(props.photo)}
       />
       <img 
         className="photo-list__image" 
         src={props.photo.urls.regular} 
         alt="Description of image" 
-        onClick={() => props.openModal(props.photo)}
+        onClick={() =>props.openModal(props.photo)}
       />
       <section className="photo-list__user-details">
         <img 
@@ -28,7 +29,7 @@ const PhotoListItem = (props) => {
           className="photo-list__user-profile" 
         />
         <div className="photo-list__user-info">
-          <p>{props.photo.user.username}</p> 
+          <p>{props.photo.user.name}</p> 
           <div className="photo-list__user-location">
             <p>{props.photo.location.city}, {props.photo.location.country}</p>
           </div>

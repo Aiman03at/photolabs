@@ -5,18 +5,21 @@ import TopicListItem from "./TopicListItem";
 
 
 
-const TopicList = (props) => {
+const TopicList = ({ topics, fetchPhotosByTopic }) => {
 
-  
+  const handleTopicClick = (topicId) => {
+    fetchPhotosByTopic(topicId); // Call the function with the selected topic's ID
+  };
   return (
     <div className="top-nav-bar__topic-list">
-      {props.topics.map((topic,index) => (
+      {topics.map((topic,index) => (
         
         <TopicListItem
           key= {index}  
           sampleDataForTopicList = {topic}  
-          
+          onClick={() => handleTopicClick(topic.id)} // Add onClick handle
         />
+        
       ))}
     </div>
   );
