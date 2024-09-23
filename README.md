@@ -32,6 +32,6 @@ npm start
 ```
 
 ## [Screenshots]
-![The Homepage Screen where all the photos and topics are visible](photolabs/frontend/screenshots/HomeRoute.png)
-![This is the Photo Modal that opens when a Photo is clicked](/photolabs/frontend/screenshots/PhotoModal.png)
-![This page shows all the photos from a specific topic](/photolabs/frontend/screenshots/PhotosByTopic.png)
+![The Homepage Screen where all the photos and topics are visible](https://github.com/Aiman03at/photolabs/blob/main/frontend/screenshots/HomeRoute.png)
+![This is the Photo Modal that opens when a Photo is clicked](https://github.com/Aiman03at/photolabs/blob/main/frontend/screenshots/PhotoModal.png)
+![This page shows all the photos from a specific topic](https://github.com/Aiman03at/photolabs/blob/main/frontend/screenshots/PhotosByTopic.png)
